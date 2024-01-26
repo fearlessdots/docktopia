@@ -1,0 +1,10 @@
+#!/usr/bin/bash
+set -e
+
+docker-compose -f "${TARGET_DIR}/craft/docker-compose.yml" -p "${TARGET_NAME}" stop || \
+	(${DOCKTOPIA_UTILS} error "> Failed to stop service(s)" && \
+	exit 1)
+
+${DOCKTOPIA_UTILS} success "> Finished"
+
+exit 0

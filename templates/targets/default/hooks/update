@@ -1,0 +1,52 @@
+#!/usr/bin/bash
+set -e
+
+if [ -f "${TARGET_HOOKS_DIR}/pre_update" ]
+then
+	${DOCKTOPIA_UTILS} section "Running 'pre_update' hook"
+	${TARGET_HOOKS_DIR}/pre_update
+	if [ ! $? -eq 0 ]
+	then
+		${DOCKTOPIA_UTILS} error "    > Failed to run hook" && \
+		exit 1
+	else
+		${DOCKTOPIA_UTILS} success "    > Finished"
+		echo ""
+	fi
+fi
+
+${DOCKTOPIA_UTILS} section "Stopping and removing container(s)"
+docker-compose --file "${TARGET_DIR}/craft/docker-compose.yml" -p "${TARGET_NAME}" down || \
+	(${DOCKTOPIA_UTILS} error "    > Failed to remove container(s)" && \
+	exit 1)
+
+${DOCKTOPIA_UTILS} success "    > Finished"
+
+echo ""
+
+${DOCKTOPIA_UTILS} section "Building image(s) [if necessary]"
+docker-compose --file "${TARGET_DIR}/craft/docker-compose.yml" -p "${TARGET_NAME}" build --pull --no-cache || \
+	(${DOCKTOPIA_UTILS} error "    > Failed to build image(s)" && \
+	exit 1)
+
+${DOCKTOPIA_UTILS} success "    > Finished"
+
+echo ""
+
+${DOCKTOPIA_UTILS} section "Pulling image(s)"
+docker-compose --file "${TARGET_DIR}/craft/docker-compose.yml" -p "${TARGET_NAME}" pull || \
+	(${DOCKTOPIA_UTILS} error "    > Failed to pull image(s)" && \
+	exit 1)
+
+${DOCKTOPIA_UTILS} success "    > Finished"
+
+echo ""
+
+${DOCKTOPIA_UTILS} section "Starting container(s)"
+docker-compose --file "${TARGET_DIR}/craft/docker-compose.yml" -p "${TARGET_NAME}" up -d --remove-orphans || \
+	(${DOCKTOPIA_UTILS} error "    > Failed to start service(s)" && \
+	exit 1)
+
+${DOCKTOPIA_UTILS} success "    > Finished"
+
+exit 0

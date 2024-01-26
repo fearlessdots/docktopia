@@ -1,0 +1,10 @@
+#!/usr/bin/bash
+set -e
+
+docker-compose -f "${TARGET_DIR}/craft/docker-compose.yml" -p "${TARGET_NAME}" up -d || \
+	(${DOCKTOPIA_UTILS} error "> Failed to start service(s)" && \
+	exit 1)
+
+${DOCKTOPIA_UTILS} success "> Finished"
+
+exit 0

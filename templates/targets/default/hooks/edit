@@ -1,0 +1,30 @@
+#!/usr/bin/bash
+set -e
+
+#
+## CONFIGURATION VARIABLES
+#
+
+DEFAULT_EDITOR="micro"
+
+#
+## FUNCTIONS
+#
+
+verify_files() {
+	if ! [ -f  ${TARGET_DIR}/craft/docker-compose.yml ]
+	then
+		${DOCKTOPIA_UTILS} error "'docker-compose.yml' not found for the target"
+		exit 1
+	fi
+}
+
+#
+##
+#
+
+verify_files
+
+${DEFAULT_EDITOR} ${TARGET_DIR}/craft/docker-compose.yml
+
+exit $?

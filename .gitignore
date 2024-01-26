@@ -1,0 +1,10 @@
+*.tar.gz
+*.tar.zst
+*.pkg.tar.xz
+pkg
+src
+go.sum
+synctropy
+.kateproject
+*.kate-swp
+*.unison_backup

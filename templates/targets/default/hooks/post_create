@@ -1,0 +1,22 @@
+#!/usr/bin/bash
+set -e
+
+${DOCKTOPIA_UTILS} section "Creating craft directory for target ${TARGET_NAME}"
+
+mkdir -p "${TARGET_DIR}/craft" || \
+	(${DOCKTOPIA_UTILS} error "    > Failed to create craft directory" && \
+	exit 1)
+
+${DOCKTOPIA_UTILS} success "    > Finished"
+
+echo ""
+
+${DOCKTOPIA_UTILS} section "Disabling target by default"
+
+touch "${TARGET_DIR}/disabled" || \
+	(${DOCKTOPIA_UTILS} error "    > Failed to create 'disabled' file" && \
+	exit 1)
+
+${DOCKTOPIA_UTILS} success "    > Finished"
+
+exit 0
