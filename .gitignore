@@ -4,7 +4,7 @@
 pkg
 src
 go.sum
-synctropy
+docktopia
 .kateproject
 *.kate-swp
 *.unison_backup
