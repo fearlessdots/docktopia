@@ -71,8 +71,8 @@ func initializeDefaultProgram(customUserDataDir string) Program {
 	programExec := os.Args[0] // Path for program executable
 
 	// DESCRIPTIONS (SHORT AND LONG)
-	programShortDescription := "A practical toolkit crafted specifically for effectively managing Docker-driven endeavors. Leveraging template functionalities, docktopia facilitates quick generation of crates and services, leading to enhanced productivity."
-	programLongDescription := fmt.Sprintf("%v is a practical toolkit crafted specifically for effectively administering Docker-driven endeavors. Leveraging template functionalities, docktopia facilitates quick generation of crates and services, leading to enhanced productivity.", programName)
+	programShortDescription := "A practical toolkit crafted specifically for effectively managing Docker-driven endeavors. Leveraging template functionalities, docktopia facilitates quick generation of crates and targets, leading to enhanced productivity."
+	programLongDescription := fmt.Sprintf("%v is a practical toolkit crafted specifically for effectively administering Docker-driven endeavors. Leveraging template functionalities, docktopia facilitates quick generation of crates and targets, leading to enhanced productivity.", programName)
 
 	// DEFAULT SHELL
 	programDefaultShellName := "sh" // Should work on all Unix systems (Linux, Android, ...)
