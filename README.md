@@ -131,15 +131,33 @@ The documentation will be generated in the `./docs` directory by default. You ca
 docktopia docs generate -o <output_dir>
 ```
 
+### Autocompletion Files
+
+It is possible to generate autocompletion files for this program to be used with the following shells:
+
+- `bash`
+- `zsh`
+- `fish`
+- `powershell`
+
+For example, to build the autocompletion file for `fish`, run:
+
+```shell
+pacpilot completion fish > <output_file>
+```
+
+> By default, the `Makefile` and, consequentially, the `PKGBUILD` automatically build the completion files for `bash`, `zsh`, and `fish`.
+
 ## Documentation
 
 ### Available Subcommands
 
 - docktopia: The main command for the program.
   - version: Show the program's version.
-  - init: Create user data directory
+  - init: Create user data directory.
   - docs: Program documentation.
     - generate: Generate program documentation (markdown files).
+  - completion: Generate autocompletion files (`bash`, `zsh`, `fish`, and `powershell`).
   - utils: Utilities for hooks execution.
     - msg: Print a message in a specific color given a HEX code.
     - attention: Display attention message.
@@ -310,7 +328,6 @@ Once you have created targets, you can perform various operations on them. The f
 - `targets ls`: List targets.
 - `targets edit`: Edit targets.
 - `targets view`: View targets.
-- `targets sync`: Sync targets.
 - `targets enable`: Enable targets.
 - `targets disable`: Disable targets.
 - `targets rm`: Remove targets.
@@ -320,11 +337,11 @@ Once you have created targets, you can perform various operations on them. The f
 
 #### Disabled Targets
 
-When executing the `targets hooks run` command or other commands that depend on hooks to function (like `targets edit` and `targets view`), `docktopia` will check if the target is disabled before initiating the synchronization process for each target. It will also verify if the crate is disabled before iterating through the targets. If any disabled targets are encountered, `docktopia` will skip them without generating an error. It will proceed to sync the remaining selected targets, if any are available (only if the crate is enabled). In essence, `docktopia` gracefully handles disabled targets during the synchronization process, allowing for the successful synchronization of the remaining enabled targets.
+When executing the `targets hooks run` command or other commands that depend on hooks to function (like `targets edit` and `targets view`), `docktopia` will check if the target is disabled before initiating the hook execution process for each target. It will also verify if the crate is disabled before iterating through the targets. If any disabled targets are encountered, `docktopia` will skip them without generating an error. It will proceed to execute the hooks of the remaining selected targets, if any are available (only if the crate is enabled). In essence, `docktopia` gracefully handles disabled targets during the hook execution process, allowing for the successful hook execution for the remaining enabled targets.
 
 #### Hooks
 
-Similar to crates, targets also support hooks that allow you to define custom actions or scripts to execute at specific stages of the synchronization process. The default hooks available for targets include:
+Similar to crates, targets also support hooks that allow you to define custom actions or scripts to execute at specific stages of the hook execution process. The default hooks available for targets include:
 
 - `post_create`: Runs after a target is created. Can be used to further configure the target configuration beyond only creating its directory (which is done automatically by the program).
 - `pre_rm`: Executes before removing a target.
