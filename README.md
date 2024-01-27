@@ -143,7 +143,7 @@ It is possible to generate autocompletion files for this program to be used with
 For example, to build the autocompletion file for `fish`, run:
 
 ```shell
-pacpilot completion fish > <output_file>
+docktopia completion fish > <output_file>
 ```
 
 > By default, the `Makefile` and, consequentially, the `PKGBUILD` automatically build the completion files for `bash`, `zsh`, and `fish`.
