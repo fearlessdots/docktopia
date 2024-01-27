@@ -1,5 +1,5 @@
 pkgname=docktopia
-pkgver=0.1.0
+pkgver=0.1.1
 pkgrel=1
 pkgdesc="A practical toolkit crafted specifically for effectively managing Docker-driven endeavors. Leveraging template functionalities, docktopia facilitates quick generation of crates and targets, leading to enhanced productivity."
 arch=('i686' 'x86_64' 'armv7h' 'aarch64')
