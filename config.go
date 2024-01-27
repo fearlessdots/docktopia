@@ -65,7 +65,7 @@ func initializeDefaultProgram(customUserDataDir string) Program {
 		"                               |_|\n"
 
 	// PROGRAM VERSION
-	programVersion := "0.1.0"
+	programVersion := "0.1.1"
 
 	// PROGRAM EXEC
 	programExec := os.Args[0] // Path for program executable
